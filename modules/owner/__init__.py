@@ -12,16 +12,15 @@ else:
     model = None
 
 
-@bot.on_message(filters.private & filters.user(config.OWNER_ID) & filters.text & \~filters.command(["start", "help"]))
-async def owner_ai_handler(_, message: Message):
+@bot.on_message(filters.private & filters.user(config.OWNER_ID) & filters.text & \~filters.command(["start", "help", "ping"]))
+async def owner_ai(_, message: Message):
     if not model:
         return await message.reply_text("Gemini API Key set nahi hai.")
 
     try:
-        response = model.generate_content(
-            f"Tum ek smart aur friendly AI assistant ho. User ka message: {message.text}"
-        )
+        prompt = f"Tum ek smart, friendly aur thoda masti bhara AI assistant ho. Short aur natural jawab dena. User ne kaha: {message.text}"
+        response = model.generate_content(prompt)
         await message.reply_text(response.text)
     except Exception as e:
         LOGGER(__name__).error(f"Owner AI error: {e}")
-        await message.reply_text("Error aa gaya AI se.")
+        await message.reply_text("AI se error aa gaya.")
