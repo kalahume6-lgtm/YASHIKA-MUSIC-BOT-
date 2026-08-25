@@ -1,0 +1,15 @@
+pyrogram==2.0.106
+tgcrypto
+py-tgcalls==0.9.7
+yt-dlp
+ffmpeg-python
+motor
+pymongo
+python-dotenv
+aiohttp
+aiofiles
+pillow
+psutil
+google-generativeai
+deep-translator
+Flask
