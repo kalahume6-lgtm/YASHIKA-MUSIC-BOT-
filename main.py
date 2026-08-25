@@ -4,13 +4,13 @@ from core.bot import bot
 from core.assistants import assistants
 from utils.logger import LOGGER
 
-async def main():
+async def start_bot():
     await bot.start()
     await assistants.start()
 
     # Load modules
-    from modules.chatbot import chatbot
-    from modules.owner import owner_ai
+    import modules.chatbot
+    import modules.owner
 
     LOGGER(__name__).info("Yashika Ultimate Bot Started Successfully!")
     await idle()
@@ -19,4 +19,4 @@ async def main():
     await assistants.stop()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(start_bot())
